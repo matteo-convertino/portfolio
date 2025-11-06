@@ -1,52 +1,58 @@
-import React, {useState, createRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import "./ExperienceCard.scss";
-import ColorThief from "colorthief";
+import {FastAverageColor} from "fast-average-color";
 
 export default function ExperienceCard({cardInfo, isDark}) {
-  const [colorArrays, setColorArrays] = useState([]);
-  const imgRef = createRef();
+  const [bgHex, setBgHex] = useState(null);
+  const imgRef = useRef(null);
+  const facRef = useRef(null);
 
-  function getColorArrays() {
-    const colorThief = new ColorThief();
-    setColorArrays(colorThief.getColor(imgRef.current));
+  useEffect(() => {
+    facRef.current = new FastAverageColor();
+    return () => {
+      facRef.current = null;
+    };
+  }, []);
+
+  async function handleImageLoad() {
+    if (!imgRef.current || !facRef.current) return;
+    try {
+      if (imgRef.current.decode) {
+        try {
+          await imgRef.current.decode();
+        } catch {}
+      }
+      const res = await facRef.current.getColorAsync(imgRef.current, {
+        mode: "precision"
+      });
+      setBgHex(res.hex);
+    } catch (e) {
+      setBgHex(null);
+    }
   }
-
-  function rgb(values) {
-    return typeof values === "undefined"
-      ? null
-      : "rgb(" + values.join(", ") + ")";
-  }
-
-  const GetDescBullets = ({descBullets, isDark}) => {
-    return descBullets
-      ? descBullets.map((item, i) => (
-          <li
-            key={i}
-            className={isDark ? "subTitle dark-mode-text" : "subTitle"}
-          >
-            {item}
-          </li>
-        ))
-      : null;
-  };
 
   return (
     <div className={isDark ? "experience-card-dark" : "experience-card"}>
-      <div style={{background: rgb(colorArrays)}} className="experience-banner">
+      <div
+        style={{background: bgHex || "transparent"}}
+        className="experience-banner"
+      >
         <div className="experience-blurred_div"></div>
         <div className="experience-div-company">
           <h5 className="experience-text-company">{cardInfo.company}</h5>
         </div>
 
         <img
-          crossOrigin={"anonymous"}
+          crossOrigin="anonymous"
           ref={imgRef}
           className="experience-roundedimg"
           src={cardInfo.companylogo}
           alt={cardInfo.company}
-          onLoad={() => getColorArrays()}
+          onLoad={handleImageLoad}
+          onError={() => setBgHex(null)}
         />
       </div>
+
       <div className="experience-text-details">
         <h5
           className={
@@ -73,10 +79,17 @@ export default function ExperienceCard({cardInfo, isDark}) {
               : "subTitle experience-text-desc"
           }
         >
-          {cardInfo.desc}
+          <span dangerouslySetInnerHTML={{__html: cardInfo.desc}}></span>
         </p>
         <ul>
-          <GetDescBullets descBullets={cardInfo.descBullets} isDark={isDark} />
+          {cardInfo.descBullets?.map((item, i) => (
+            <li
+              key={i}
+              className={isDark ? "subTitle dark-mode-text" : "subTitle"}
+            >
+              <div style={{textAlign: "justify"}} dangerouslySetInnerHTML={{__html: item}}></div>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

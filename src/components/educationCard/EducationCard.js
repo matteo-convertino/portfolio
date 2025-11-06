@@ -10,7 +10,7 @@ export default function EducationCard({school}) {
     return descBullets
       ? descBullets.map((item, i) => (
           <li key={i} className="subTitle">
-            {item}
+            <div dangerouslySetInnerHTML={{__html: item}}></div>
           </li>
         ))
       : null;
@@ -45,7 +45,7 @@ export default function EducationCard({school}) {
                     : "education-text-subHeader"
                 }
               >
-                {school.subHeader}
+                <div dangerouslySetInnerHTML={{__html: school.subHeader}}></div>
               </h5>
               <p
                 className={`${
