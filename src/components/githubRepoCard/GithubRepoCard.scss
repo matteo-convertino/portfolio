@@ -80,6 +80,8 @@
 .dark-card-mode {
   background-color: $darkBackground;
   color: $textColorDark;
+  border-radius: 10px;
+  border: 1px solid $lightBorder1;
 }
 .dark-card-mode p {
   color: $textColorDark;
@@ -91,5 +93,5 @@
 
 .dark-card-mode:hover {
   background-color: $buttonColor !important;
-  box-shadow: 0px 0px 16px $darkBoxShadow;
+  box-shadow: $achievementCertificateCardHoverDark 0px 20px 30px -10px;
 }

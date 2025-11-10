@@ -30,8 +30,8 @@ export default function KoFiWidget() {
             kofiWidgetOverlay.draw('matteoconvertino', {
         'type': 'floating-chat',
         'floating-chat.donateButton.text': 'Support me',
-        'floating-chat.donateButton.background-color': '#00b9fe',
-        'floating-chat.donateButton.text-color': '#fff',
+        'floating-chat.donateButton.background-color': '#fcbf47',
+        'floating-chat.donateButton.text-color': '#323842',
       });
             `;
       document.head.appendChild(kofiButtonScript);

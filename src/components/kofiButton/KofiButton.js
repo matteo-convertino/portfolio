@@ -10,7 +10,7 @@ export default function KofiButton() {
           className="kofiimg"
           alt="Ko-Fi button"
         />
-        Support me on Ko-Fi
+        <span style={{color: "#323842"}}>Support me on Ko-Fi</span>
       </a>
     </div>
   );

@@ -19,8 +19,7 @@
   transition: all 0.3s ease-in-out 0s;
 }
 .main-button:hover {
-  background-color: $darkBoxShadow2;
-  color: $buttonColor;
+  background-color: $buttonHover;
   transition: all 0.3s ease 0s;
   transform: translateY(-3px);
 }
