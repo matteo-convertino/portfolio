@@ -14,6 +14,11 @@
   font-size: 2.5rem;
   text-decoration: none;
 }
+@media (max-width: 640px) {
+  .splash-title-container {
+    font-size: 1.5rem;
+  }
+}
 .splash-title {
   font-family: "Agustina Regular", cursive;
   font-weight: bold;

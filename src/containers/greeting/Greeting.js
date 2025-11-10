@@ -8,6 +8,7 @@ import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
 import {illustration, greeting} from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
+import KofiButton from "../../components/kofiButton/KofiButton";
 
 export default function Greeting() {
   const {isDark} = useContext(StyleContext);
@@ -40,6 +41,8 @@ export default function Greeting() {
               <SocialMedia />
               <div className="button-greeting-div">
                 <Button text="Contact me" href="#contact" />
+
+                <KofiButton />
                 {greeting.resumeLink && (
                   <a
                     href={require("./resume.pdf")}

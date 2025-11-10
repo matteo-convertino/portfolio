@@ -58,7 +58,7 @@ const skillsSection = {
     {
       skillName: "html-5",
       fontAwesomeClassname: "fab fa-html5"
-    },
+    }
   ]
 };
 
@@ -133,11 +133,18 @@ const workExperiences = {
   display: true,
   experience: [
     {
+      role: "Flutter Developer",
+      company: "ERSAF",
+      companylogo: require("./assets/images/workExperience/ersafLogo.jpg"),
+      date: "November 2025 – Present"
+    },
+    {
       role: "Back-End Developer",
       company: "Fincantieri NextTech Spa",
       companylogo: require("./assets/images/workExperience/fincantieriLogo.jpg"),
       date: "March 2025 – July 2025",
-      desc: "The goal of this internship was to integrate Motorola land mobile radio systems with existing " +
+      desc:
+        "The goal of this internship was to integrate Motorola land mobile radio systems with existing " +
         "C2 infrastructures, enabling reliable message exchange and data synchronization.",
       descBullets: [
         "Developing an XMPP client within a .NET (C#) backend to handle message exchange",
@@ -150,7 +157,8 @@ const workExperiences = {
       company: "Saipem",
       companylogo: require("./assets/images/workExperience/saipemLogo.png"),
       date: "March 2024 – July 2024",
-      desc: "The objective of this internship was to train neural networks that would allow subsea drones " +
+      desc:
+        "The objective of this internship was to train neural networks that would allow subsea drones " +
         "to autonomously identify structures and obstacles that they might encounter during offshore operations.",
       descBullets: [
         "Scouting for cutting-edge models for instance segmentation and object detection",
@@ -164,7 +172,8 @@ const workExperiences = {
       company: "ENEL Gridspertise",
       companylogo: require("./assets/images/workExperience/enelLogo.jpeg"),
       date: "March 2023 – July 2023",
-      desc: "ENEL Gridspertise has solutions for improving the efficiency of the installation and troubleshooting " +
+      desc:
+        "ENEL Gridspertise has solutions for improving the efficiency of the installation and troubleshooting " +
         "process of Advanced Metering Infrastructures (AMI) and communication between network devices.<br/>" +
         "One of the solutions developed by Gridspertise for these activities is SuRF.<br/><br/>" +
         "The final goal of the internship was to create an intuitive Android mobile application to simplify the " +
@@ -183,7 +192,8 @@ const openSource = {
 const bigProjects = {
   display: true,
   title: "Side Projects",
-  subtitle: "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR TECH PRODUCTS",
+  subtitle:
+    "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR TECH PRODUCTS",
   projects: [
     {
       image: require("./assets/images/bigProjects/xpetis.png"),
@@ -208,17 +218,6 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/bigProjects/fooddiia.png"),
-      projectName: "Fooddiiaa",
-      projectDesc: "Wordpress Developer",
-      footerLink: [
-        {
-          name: "Visit website",
-          url: "https://www.fooddiia.it/"
-        }
-      ]
-    },
-    {
       image: require("./assets/images/bigProjects/takeusicily.png"),
       projectName: "TakeUSicily",
       projectDesc: "Wordpress Developer",
@@ -226,6 +225,17 @@ const bigProjects = {
         {
           name: "Visit website",
           url: "https://takeusicily.com/"
+        }
+      ]
+    },
+    {
+      image: require("./assets/images/bigProjects/fooddiia.png"),
+      projectName: "Fooddiiaa",
+      projectDesc: "Wordpress Developer",
+      footerLink: [
+        {
+          name: "Visit website",
+          url: "https://www.fooddiia.it/"
         }
       ]
     },
@@ -239,27 +249,39 @@ const bigProjects = {
           url: "https://tiformiamonoi.it/"
         }
       ]
-    },
+    }
   ]
 };
 
 // Achievement, certificates, talks etc.
 const achievementSection = {
-  display: false,
-  title: emoji("Achievements And Certifications 🏆 "),
+  display: true,
+  title: emoji("Achievements And Certifications"),
   subtitle:
     "Achievements, Certifications, Award Letters and Some Cool Stuff that I have done !",
 
   achievementsCards: [
     {
-      title: "",
-      subtitle: "",
-      // image: require("./assets/images/codeInLogo.webp"),
+      title: "ELIS College",
+      subtitle: "ELIS",
+      image: require("./assets/images/achievement/elis.jpg"),
       imageAlt: "",
       footerLink: [
         {
-          name: "",
-          url: ""
+          name: "Visit website",
+          url: "https://www.elis.org/formazione/college/"
+        }
+      ]
+    },
+    {
+      title: "Founders Academy",
+      subtitle: "Starting Finance",
+      image: require("./assets/images/achievement/foundersAcademy.jpg"),
+      imageAlt: "",
+      footerLink: [
+        {
+          name: "Visit website",
+          url: "https://shop.startingfinance.com/products/foundersacademy"
         }
       ]
     }
