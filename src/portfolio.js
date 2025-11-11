@@ -83,9 +83,9 @@ const educationInfo = {
       duration: "September 2022 - July 2025",
       desc: "",
       descBullets: [
-        "Foody presentation (degree thesis): <a class='subTitle' href='https://pitch.com/v/presentazione-foody-hk9puv'>https://pitch.com/v/presentazione-foody-hk9puv</a>",
-        "Foody documentation (degree thesis): <a class='subTitle' href='https://docs.google.com/document/d/1p1RFOiUF8x7opr-N9B8PLcPE7cJZiqI1_v2iclKKEvk/edit?usp=sharing'>https://docs.google.com/document/d/1p1RFOiUF8x7opr-N9B8PLcPE7cJZiqI1_v2iclKKEvk/edit?usp=sharing</a>",
-        "Foody repository (degree thesis): <a class='subTitle' href='https://github.com/foody-elis'>https://github.com/foody-elis</a>"
+        " <a class='subTitle' href='https://pitch.com/v/presentazione-foody-hk9puv'>Foody presentation (degree thesis)</a>",
+        "<a class='subTitle' href='https://docs.google.com/document/d/1p1RFOiUF8x7opr-N9B8PLcPE7cJZiqI1_v2iclKKEvk/edit?usp=sharing'>Foody documentation (degree thesis)</a>",
+        "<a class='subTitle' href='https://github.com/foody-elis'>Foody GitHub repository (degree thesis)</a>"
       ]
     },
     {
