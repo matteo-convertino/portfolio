@@ -1,6 +1,7 @@
-fs = require("fs");
+const feed2json = require("feed2json");
+const fs = require("fs");
 const https = require("https");
-process = require("process");
+const process = require("process");
 require("dotenv").config();
 
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
@@ -16,6 +17,57 @@ const ERR = {
   requestFailedMedium:
     "The request to Medium didn't succeed. Check if Medium username in your .env file is correct."
 };
+
+async function fetchWithRetry(options, data, retries = 5, delay = 5000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await new Promise((resolve, reject) => {
+        const req = https.request(options, res => {
+          let responseData = "";
+
+          res.on("data", d => {
+            responseData += d;
+          });
+
+          res.on("end", () => {
+            if (res.statusCode === 200) {
+              resolve(responseData);
+            } else if (res.statusCode === 429 && i < retries - 1) {
+              console.log(`Rate limited. Retrying in ${delay}ms...`);
+              setTimeout(
+                () =>
+                  resolve(fetchWithRetry(options, data, retries - 1, delay)),
+                delay
+              );
+            } else {
+              reject(
+                new Error(
+                  `${options.path} request failed with status code: ${res.statusCode}`
+                )
+              );
+            }
+          });
+        });
+
+        req.on("error", error => {
+          reject(error);
+        });
+
+        if (data) {
+          req.write(data);
+        }
+        req.end();
+      });
+    } catch (error) {
+      if (i === retries - 1) {
+        throw error;
+      }
+      console.log(`Error fetching data. Retrying in ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
 if (USE_GITHUB_DATA === "true") {
   if (GITHUB_USERNAME === undefined) {
     throw new Error(ERR.noUserName);
@@ -67,64 +119,44 @@ if (USE_GITHUB_DATA === "true") {
     }
   };
 
-  const req = https.request(default_options, res => {
-    let data = "";
-
-    console.log(`statusCode: ${res.statusCode}`);
-    if (res.statusCode !== 200) {
-      throw new Error(ERR.requestFailed);
-    }
-
-    res.on("data", d => {
-      data += d;
-    });
-    res.on("end", () => {
-      fs.writeFile("./public/profile.json", data, function (err) {
+  fetchWithRetry(default_options, data)
+    .then(responseData => {
+      fs.writeFile("./public/profile.json", responseData, function (err) {
         if (err) return console.log(err);
         console.log("saved file to public/profile.json");
       });
+    })
+    .catch(error => {
+      console.error("Error:", error);
     });
-  });
-
-  req.on("error", error => {
-    throw error;
-  });
-
-  req.write(data);
-  req.end();
 }
 
 if (MEDIUM_USERNAME !== undefined) {
   console.log(`Fetching Medium blogs data for ${MEDIUM_USERNAME}`);
+  const url = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
   const options = {
-    hostname: "api.rss2json.com",
-    path: `/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}`,
+    hostname: "medium.com",
+    path: `/feed/@${MEDIUM_USERNAME}`,
     port: 443,
     method: "GET"
   };
 
-  const req = https.request(options, res => {
-    let mediumData = "";
+  fetchWithRetry(options)
+    .then(responseData => {
+      feed2json.fromString(responseData, url, {}, (err, json) => {
+        if (err) {
+          console.error("Error converting feed to JSON:", err);
+          return;
+        }
 
-    console.log(`statusCode: ${res.statusCode}`);
-    if (res.statusCode !== 200) {
-      throw new Error(ERR.requestMediumFailed);
-    }
-
-    res.on("data", d => {
-      mediumData += d;
-    });
-    res.on("end", () => {
-      fs.writeFile("./public/blogs.json", mediumData, function (err) {
-        if (err) return console.log(err);
-        console.log("saved file to public/blogs.json");
+        const mediumData = JSON.stringify(json, null, 2);
+        fs.writeFile("./public/blogs.json", mediumData, function (err) {
+          if (err) return console.error(err);
+          console.log("Saved file to public/blogs.json");
+        });
       });
+    })
+    .catch(error => {
+      console.error("Error:", error);
     });
-  });
-
-  req.on("error", error => {
-    throw error;
-  });
-
-  req.end();
 }

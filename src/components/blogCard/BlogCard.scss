@@ -66,11 +66,20 @@
   display: block;
   position: relative;
   background-color: transparent;
-  border-radius: 4px;
   text-decoration: none;
   z-index: 0;
   overflow: hidden;
   height: 100%;
+
+  border-radius: 10px;
+  border: 1px solid $lightBorder1;
+
+  box-shadow: $lightBoxShadowDark 0px 10px 30px -15px;
+  transition: box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  box-shadow: $achievementCertificateCardHoverDark 0px 20px 30px -10px;
 }
 
 .blog-card::before {
@@ -144,6 +153,9 @@
     font-size: 1.125rem;
   }
 }
-.blog-card-shadow {
-  box-shadow: 1px 0px 20px $darkBoxShadow2;
-}
+//.blog-card-shadow {
+//  box-shadow: $lightBoxShadowDark 0px 10px 30px -15px;
+//}
+//.blog-card-shadow:hover {
+//  box-shadow: $achievementCertificateCardHoverDark 0px 20px 30px -10px;
+//}

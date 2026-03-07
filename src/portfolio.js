@@ -23,10 +23,11 @@ const greeting = {
   username: "Matteo Convertino",
   title: "Hi all, I'm Matteo",
   subTitle: emoji(
-    "I'm a Computer Engineering student with an insatiable passion for software development and more. " +
-      "I have explored various fields: Web and Mobile development, IoT, automation scripting," +
-      " Networking & Cybersecurity, Computer Vision and much more. My thirst for knowledge drives my" +
-      " commitment to continuous innovation."
+    "I’m a software developer with a background in Computer Engineering, " +
+    "and I love building things that solve real problems." +
+    " Over time I’ve worked across AI, mobile and web development, security, automation, " +
+    "and open-source projects, always trying to combine solid technology with " +
+    "simple, useful experiences."
   ),
   resumeLink: "" // Set to empty to hide the button
 };
@@ -40,7 +41,7 @@ const socialMediaLinks = {
   telegram: "https://t.me/matteo_convertino",
   gitlab: "https://gitlab.com/matteo-convertino",
   // facebook: "https://www.facebook.com/saad.pasta7",
-  // medium: "https://medium.com/@saadpasta",
+  medium: "https://medium.com/@matteo-convertino",
   stackoverflow: "https://stackoverflow.com/users/21896742/matteo-convertino"
   // Instagram, Twitter and Kaggle are also supported in the links!
   // To customize icons and social links, tweak src/components/SocialMedia
@@ -196,13 +197,24 @@ const bigProjects = {
     "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR TECH PRODUCTS",
   projects: [
     {
+      image: require("./assets/images/bigProjects/lat.png"),
+      projectName: "Luxury Accommodation Trapani",
+      projectDesc: "CTO",
+      footerLink: [
+        {
+          name: "Visit website",
+          url: "https://www.luxuryaccommodationtrapani.it/"
+        }
+      ]
+    },
+    {
       image: require("./assets/images/bigProjects/xpetis.png"),
       projectName: "XPETIS",
       projectDesc: "Founding Team Member & CTO",
       footerLink: [
         {
-          name: "Visit website (Coming soon)",
-          url: ""
+          name: "Visit website",
+          url: "https://xpetis.it/"
         }
       ]
     },
@@ -290,11 +302,11 @@ const achievementSection = {
 
 // Blogs Section
 const blogSection = {
-  display: false,
+  display: true,
   title: "Blogs",
   subtitle:
     "With Love for Developing cool stuff, I love to write and teach others what I have learnt.",
-  displayMediumBlogs: "false", // Set true to display fetched medium blogs instead of hardcoded ones
+  displayMediumBlogs: "true", // Set true to display fetched medium blogs instead of hardcoded ones
   blogs: [
     {
       url: "",
