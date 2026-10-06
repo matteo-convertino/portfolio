@@ -24,10 +24,10 @@ const greeting = {
   title: "Hi all, I'm Matteo",
   subTitle: emoji(
     "I’m a software developer with a background in Computer Engineering, " +
-    "and I love building things that solve real problems." +
-    " Over time I’ve worked across AI, mobile and web development, security, automation, " +
-    "and open-source projects, always trying to combine solid technology with " +
-    "simple, useful experiences."
+      "and I love building things that solve real problems." +
+      " Over time I’ve worked across AI, mobile and web development, security, automation, " +
+      "and open-source projects, always trying to combine solid technology with " +
+      "simple, useful experiences."
   ),
   resumeLink: "" // Set to empty to hide the button
 };
@@ -72,7 +72,7 @@ const educationInfo = {
       logo: require("./assets/images/education/campusBiomedicoLogo.jpg"),
       subHeader:
         "<a href='https://www.unicampus.it/en/corsi/offerta-formativa/corsi-di-laurea-magistrale/facolta-dipartimentale-di-ingegneria/cdlm-ingegneria-dei-sistemi-intelligenti-lm-32/' target='_blank'>Intelligent Systems Engineering</a>",
-      duration: "Planned",
+      duration: "March 2026 - Present",
       desc: "",
       descBullets: []
     },
@@ -137,7 +137,12 @@ const workExperiences = {
       role: "Flutter Developer",
       company: "ERSAF",
       companylogo: require("./assets/images/workExperience/ersafLogo.jpg"),
-      date: "November 2025 – Present"
+      date: "November 2025 – August 2026",
+      desc:
+        "Experience focused on the development of a cross-platform Flutter application for assessing students’" +
+        " skills, used in schools and based on European frameworks such as DigComp and LifeComp. Development of the " +
+        "user interface in Flutter and Dart, translating designs created in Figma into responsive components and " +
+        "interfaces."
     },
     {
       role: "Back-End Developer",
